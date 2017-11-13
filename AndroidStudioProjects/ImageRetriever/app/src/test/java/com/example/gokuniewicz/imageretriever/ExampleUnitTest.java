@@ -1,4 +1,4 @@
-package com.example.gabi.imageretriever;
+package com.example.gokuniewicz.imageretriever;
 
 import org.junit.Test;
 

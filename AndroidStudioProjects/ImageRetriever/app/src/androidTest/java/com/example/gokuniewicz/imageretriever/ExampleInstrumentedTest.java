@@ -1,4 +1,4 @@
-package com.example.gabi.imageretriever;
+package com.example.gokuniewicz.imageretriever;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.gabi.imageretriever", appContext.getPackageName());
+        assertEquals("com.example.gokuniewicz.imageretriever", appContext.getPackageName());
     }
 }

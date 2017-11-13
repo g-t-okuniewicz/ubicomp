@@ -20,4 +20,14 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/fragment"
         tools:layout="@layout/fragment_map" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="22dp"
+        android:layout_toEndOf="@+id/fragment"
+        android:text="TextView" />
 </RelativeLayout>
