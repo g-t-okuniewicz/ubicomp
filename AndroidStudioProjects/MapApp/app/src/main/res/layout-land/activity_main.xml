@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.gokuniewicz.mapapp.MainActivity">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.gokuniewicz.mapapp.CityListFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        tools:layout="@layout/fragment_city_list" />
+    <FrameLayout
+        android:layout_width="188dp"
+        android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.gokuniewicz.mapapp.MapFragment"
+        <fragment
+            android:id="@+id/fragment3"
+            android:name="com.example.gokuniewicz.mapapp.CityListFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_city_list" />
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/fragment"
-        tools:layout="@layout/fragment_map" />
+        android:layout_alignParentEnd="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="22dp"
-        android:layout_toEndOf="@+id/fragment"
-        android:text="TextView" />
-</RelativeLayout>
+        <fragment
+            android:id="@+id/fragment4"
+            android:name="com.example.gokuniewicz.mapapp.MapFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_map" />
+    </FrameLayout>
+
+</LinearLayout>
