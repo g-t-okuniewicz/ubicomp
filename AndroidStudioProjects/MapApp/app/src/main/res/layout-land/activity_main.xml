@@ -25,7 +25,7 @@
         android:layout_alignParentEnd="true">
 
         <fragment
-            android:id="@+id/fragment4"
+            android:id="@+id/mapFragment"
             android:name="com.example.gokuniewicz.mapapp.MapFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
