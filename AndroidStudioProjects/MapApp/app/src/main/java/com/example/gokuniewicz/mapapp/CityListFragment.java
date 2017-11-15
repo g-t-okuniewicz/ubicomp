@@ -2,6 +2,8 @@ package com.example.gokuniewicz.mapapp;
 
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,8 +64,22 @@ public class CityListFragment extends Fragment implements AdapterView.OnItemClic
 
         Toast.makeText(activity, "Clicked: " + location, Toast.LENGTH_SHORT).show();
 
-        MapFragment fragment = (MapFragment) activity.getFragmentManager().findFragmentById(R.id.mapFragment);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            MapFragment fragment = (MapFragment) activity.getFragmentManager().findFragmentById(R.id.mapFragment);
+            Bundle args = new Bundle();
+            args.putString("location", location);
+            fragment.setArguments(args);
+            //fragment.moveMarker(location);
+        } else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            MapFragment fragment = new MapFragment();
+            Bundle args = new Bundle();
+            args.putString("location", location);
+            fragment.setArguments(args);
 
-        fragment.moveMarker(location);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.city_list_fragment, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 }

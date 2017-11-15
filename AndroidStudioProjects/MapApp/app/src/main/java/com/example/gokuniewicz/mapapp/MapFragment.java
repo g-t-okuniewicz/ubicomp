@@ -49,6 +49,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView =  inflater.inflate(R.layout.fragment_map, container, false);
+        location = getArguments().getString("location");
+        setCoordinates(location);
         return mView;
     }
 
