@@ -4,32 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gokuniewicz.mapapp.MainActivity">
+    tools:context="com.example.gabi.mapapp.MainActivity">
 
     <FrameLayout
+        android:id="@+id/cityListFrameLand"
         android:layout_width="188dp"
         android:layout_height="match_parent">
 
         <fragment
-            android:id="@+id/fragment3"
-            android:name="com.example.gokuniewicz.mapapp.CityListFragment"
+            android:id="@+id/fragment"
+            android:name="com.example.gabi.mapapp.LocationListFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_city_list" />
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_location_list" />
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/mapFrameLand"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_height="match_parent">
 
-        <fragment
-            android:id="@+id/mapFragment"
-            android:name="com.example.gokuniewicz.mapapp.MapFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_map" />
     </FrameLayout>
 
 </LinearLayout>

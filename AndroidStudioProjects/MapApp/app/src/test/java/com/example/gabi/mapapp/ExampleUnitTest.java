@@ -1,4 +1,4 @@
-package com.example.gokuniewicz.mapapp;
+package com.example.gabi.mapapp;
 
 import org.junit.Test;
 

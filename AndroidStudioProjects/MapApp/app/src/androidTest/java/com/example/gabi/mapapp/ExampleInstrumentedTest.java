@@ -1,4 +1,4 @@
-package com.example.gokuniewicz.mapapp;
+package com.example.gabi.mapapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.gokuniewicz.mapapp", appContext.getPackageName());
+        assertEquals("com.example.gabi.mapapp", appContext.getPackageName());
     }
 }
