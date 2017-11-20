@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.gabi.mapapp.MapFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.gms.maps.MapView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is map fragment" />
+        android:id="@+id/mapView"
+        />
 
 </FrameLayout>

@@ -1,5 +1,6 @@
 package com.example.gabi.mapapp;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
