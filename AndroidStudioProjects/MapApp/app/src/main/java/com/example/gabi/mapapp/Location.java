@@ -1,10 +1,12 @@
 package com.example.gabi.mapapp;
 
+import java.io.Serializable;
+
 /**
  * Created by gabi on 20/11/17.
  */
 
-public class Location {
+public class Location implements Serializable {
     private String name;
     private double lat;
     private double lng;

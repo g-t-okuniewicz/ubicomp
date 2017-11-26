@@ -15,6 +15,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -28,6 +29,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
+    Marker mMarker;
 
     public MapFragment() {
         // Required empty public constructor
@@ -37,7 +39,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        location = new Location("Dublin", 53.347860, -6.272487);
+        //location = new Location("Dublin", 53.347860, -6.272487);
+        location = (Location)getArguments().getSerializable("location");
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_map, container, false);
         return mView;
@@ -62,7 +65,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mGoogleMap.addMarker(new MarkerOptions()
+        mMarker = mGoogleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(
                         location.getLat(),
                         location.getLng()
@@ -99,4 +102,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         this.location = location;
     }
 
+
+    public void moveMarker(Location location) {
+        LatLng latLng = new LatLng(location.getLat(), location.getLng());
+        mMarker.setPosition(latLng);
+        mMarker.setTitle(location.getName());
+        mMarker.setSnippet(location.getLat() + ", " + location.getLng());
+        CameraPosition cameraPosition = CameraPosition.builder()
+                .target(latLng)
+                .zoom(6)
+                .bearing(0)
+                .tilt(45)
+                .build();
+
+        mGoogleMap.moveCamera(
+                CameraUpdateFactory
+                        .newCameraPosition(cameraPosition)
+        );
+    }
 }

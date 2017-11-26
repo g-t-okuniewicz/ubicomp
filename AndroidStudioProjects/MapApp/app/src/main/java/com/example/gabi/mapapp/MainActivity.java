@@ -2,6 +2,7 @@ package com.example.gabi.mapapp;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -23,28 +24,35 @@ public class MainActivity extends AppCompatActivity {
 
         // find the retained map fragment on activity restarts
         FragmentManager fm = getFragmentManager();
-        mMapFragment = (MapFragment) fm.findFragmentByTag(TAG_MAP_FRAGMENT);
-
-        // create the map fragment and data the first time
-        if(mMapFragment == null) {
-            // add the fragment
-            Log.d("CREATION", "new MapFragment()");
-            mMapFragment = new MapFragment();
-            //fm.beginTransaction().add(mMapFragment, TAG_MAP_FRAGMENT).commit();
-            //mMapFragment.setLocation(new Location("Dublin", 53.347860, -6.272487));
-        }
+        Log.d("CREATION", "new MapFragment()");
+        mMapFragment = new MapFragment();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             if(findViewById(R.id.mapFrameLand) != null) {
-                /*
-                if(savedInstanceState != null) {
-                    Log.d("CREATION", "savedInstanceState != null");
-                    return;
-                }
-                */
-
+                Log.d("CREATION", "location");
+                Location loc = new Location("Cork", 51.892171, -8.475068);
                 Log.d("CREATION", "adding map fragment");
-                getFragmentManager().beginTransaction().add(R.id.mapFrameLand, mMapFragment).commit();
+                Log.d("CREATION", "transaction");
+                FragmentTransaction ft = fm.beginTransaction();
+
+                if(mMapFragment.getArguments() == null) {
+                    Log.d("CREATION", "map fragment arguments null");
+                    Log.d("CREATION", "bundle");
+                    Bundle bundle = new Bundle();
+                    Log.d("CREATION", "add to bundle");
+                    bundle.putSerializable("location", loc);
+                    mMapFragment.setArguments(bundle);
+                } else {
+                    Log.d("CREATION", "map fragment arguments not null");
+                    mMapFragment.setLocation(new Location("Kerry", 52.264007, -9.686990));
+                }
+                //mMapFragment.setArguments(bundle);
+
+                //ft.replace(android.R.id.content, mapFragment);
+                Log.d("CREATION", "replacing the fragment");
+                ft.replace(R.id.mapFrameLand, mMapFragment, "MapFragment");
+                ft.addToBackStack(null);
+                ft.commit();
             }
         } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
