@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
-    private Location location;
+    private MapAppLocation mapAppLocation;
 
     private GoogleMap mGoogleMap;
     MapView mMapView;
@@ -39,8 +39,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //location = new Location("Dublin", 53.347860, -6.272487);
-        location = (Location)getArguments().getSerializable("location");
+        //mapAppLocation = new MapAppLocation("Dublin", 53.347860, -6.272487);
+        mapAppLocation = (MapAppLocation)getArguments().getSerializable("location");
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_map, container, false);
         return mView;
@@ -65,49 +65,50 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMarker = mGoogleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(
-                        location.getLat(),
-                        location.getLng()
-                ))
-                .title(location.getName())
-                .snippet(
-                        location.getLat()
-                        + " "
-                        + location.getLng()
-                )
-        );
+        if(mapAppLocation != null) {
+            mMarker = mGoogleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(
+                            mapAppLocation.getLat(),
+                            mapAppLocation.getLng()
+                    ))
+                    .title(mapAppLocation.getName())
+                    .snippet(
+                            mapAppLocation.getLat()
+                                    + " "
+                                    + mapAppLocation.getLng()
+                    )
+            );
 
-        CameraPosition cameraPosition = CameraPosition.builder()
-                .target(new LatLng(
-                        location.getLat(),
-                        location.getLng()
-                ))
-                .zoom(6)
-                .bearing(0)
-                .tilt(45)
-                .build();
+            CameraPosition cameraPosition = CameraPosition.builder()
+                    .target(new LatLng(
+                            mapAppLocation.getLat(),
+                            mapAppLocation.getLng()
+                    ))
+                    .zoom(6)
+                    .bearing(0)
+                    .tilt(45)
+                    .build();
 
-        mGoogleMap.moveCamera(
-                CameraUpdateFactory
-                .newCameraPosition(cameraPosition)
-        );
+            mGoogleMap.moveCamera(
+                    CameraUpdateFactory
+                            .newCameraPosition(cameraPosition)
+            );
+        }
     }
 
-    public Location getLocation() {
-        return location;
+    public MapAppLocation getMapAppLocation() {
+        return mapAppLocation;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setMapAppLocation(MapAppLocation mapAppLocation) {
+        this.mapAppLocation = mapAppLocation;
     }
 
-
-    public void moveMarker(Location location) {
-        LatLng latLng = new LatLng(location.getLat(), location.getLng());
+    public void moveMarker(MapAppLocation mapAppLocation) {
+        LatLng latLng = new LatLng(mapAppLocation.getLat(), mapAppLocation.getLng());
         mMarker.setPosition(latLng);
-        mMarker.setTitle(location.getName());
-        mMarker.setSnippet(location.getLat() + ", " + location.getLng());
+        mMarker.setTitle(mapAppLocation.getName());
+        mMarker.setSnippet(mapAppLocation.getLat() + ", " + mapAppLocation.getLng());
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(latLng)
                 .zoom(6)
